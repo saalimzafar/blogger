@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -137,10 +137,10 @@ LOGOUT_REDIRECT_URL = 'home' # new
 
 SECURE_BROWSER_XSS_FILTER = True 
 X_FRAME_OPTIONS = 'DENY' 
-SECURE_SSL_REDIRECT = True 
+SECURE_SSL_REDIRECT = False 
 SECURE_HSTS_SECONDS = 3600 # new 
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True # new 
-SECURE_HSTS_PRELOAD = True # new 
+SECURE_HSTS_PRELOAD = False # new 
 SECURE_CONTENT_TYPE_NOSNIFF = True # new
 
 SESSION_COOKIE_SECURE = True # new 
