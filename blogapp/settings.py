@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-@6h34nz*06ddr$o88_ov0*g#a@qez@jjajk0h2o*v+&t2)6t1c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.herokuapp.com','localhost','127.0.0.1']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     'blog.apps.BlogConfig',
     'accounts.apps.AccountsConfig',
 ]
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -115,8 +117,14 @@ USE_I18N = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+STATICFILES_FINDERS = [ "django.contrib.staticfiles.finders.FileSystemFinder", 
+			"django.contrib.staticfiles.finders.AppDirectoriesFinder", ]
+
+
+
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # new
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -125,3 +133,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'home' 
 LOGOUT_REDIRECT_URL = 'home' # new
+
+
+SECURE_BROWSER_XSS_FILTER = True 
+X_FRAME_OPTIONS = 'DENY' 
+SECURE_SSL_REDIRECT = True 
+SECURE_HSTS_SECONDS = 3600 # new 
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True # new 
+SECURE_HSTS_PRELOAD = True # new 
+SECURE_CONTENT_TYPE_NOSNIFF = True # new
+
+SESSION_COOKIE_SECURE = True # new 
+CSRF_COOKIE_SECURE = True # new
